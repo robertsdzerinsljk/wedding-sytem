@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="btnFill" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 160) rotate(54) scale(330)">
+      <stop offset="0" stop-color="#FBF9F3"/>
+      <stop offset="0.72" stop-color="#F4F0E6"/>
+      <stop offset="1" stop-color="#EDE6D8"/>
+    </radialGradient>
+    <linearGradient id="goldStroke" x1="110" y1="90" x2="388" y2="406" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8D8AE"/>
+      <stop offset="0.48" stop-color="#C8A45C"/>
+      <stop offset="1" stop-color="#F0E4BF"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9BA17B"/>
+      <stop offset="1" stop-color="#566040"/>
+    </linearGradient>
+    <filter id="dropShadow" x="40" y="40" width="432" height="432" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.28 0 0 0 0 0.23 0 0 0 0 0.14 0 0 0 0.20 0"/>
+      <feBlend in2="SourceGraphic" result="shape"/>
+    </filter>
+    <filter id="softHighlight" x="75" y="73" width="340" height="340" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#dropShadow)">
+    <circle cx="256" cy="256" r="170" fill="url(#btnFill)"/>
+    <circle cx="256" cy="256" r="166" stroke="url(#goldStroke)" stroke-width="8"/>
+    <path d="M376 319.5c-13.5 16.3-31.2 32.7-54 40.4-23.5 8-51.1 4.6-72.6-7.9-28.1-16.4-43.5-44.7-51.7-75.2-4.9-18.2-7.4-37-9.4-55.7-2.7-24.6-4.9-49.4-9.6-73.7-2.5-12.9-5.8-25.7-11.1-37.8-3-7-6.9-13.9-11.9-19.7" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="10" stroke-linecap="round" filter="url(#softHighlight)"/>
+
+    <path d="M205 298L256 247L307 298" stroke="#616A4B" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g>
+      <path d="M347 354C364 336 381 331 400 335" stroke="#7E8564" stroke-width="3" stroke-linecap="round"/>
+      <path d="M361 339C372 316 390 302 412 293" stroke="#7E8564" stroke-width="3" stroke-linecap="round"/>
+      <path d="M375 326C379 303 392 286 411 272" stroke="#7E8564" stroke-width="3" stroke-linecap="round"/>
+      <path d="M393 310C395 287 405 269 420 252" stroke="#7E8564" stroke-width="3" stroke-linecap="round"/>
+
+      <path d="M337 363C348 355 365 354 383 360C369 371 352 372 337 363Z" fill="url(#leafGrad)"/>
+      <path d="M358 344C367 332 383 326 401 326C392 341 378 350 358 344Z" fill="url(#leafGrad)"/>
+      <path d="M372 327C377 310 389 298 406 291C403 308 393 322 372 327Z" fill="url(#leafGrad)"/>
+      <path d="M390 310C393 294 403 282 418 273C418 290 411 303 390 310Z" fill="url(#leafGrad)"/>
+      <path d="M401 290C406 278 416 269 429 264C427 279 420 289 401 290Z" fill="url(#leafGrad)"/>
+    </g>
+  </g>
+</svg>

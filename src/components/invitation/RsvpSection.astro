@@ -1,0 +1,150 @@
+---
+import type { MealOption } from "../../data/wedding";
+
+type Props = {
+  guests: string[];
+  mealOptions: MealOption[];
+};
+
+const { guests, mealOptions } = Astro.props;
+---
+
+<section class="wedding-section" id="rsvp">
+  <div class="section-inner">
+    <div class="rsvp-heading">
+      <h2 class="rsvp-title">RSVP</h2>
+
+      <p class="rsvp-intro">
+        Izvēlieties ēdienu katram viesim atsevišķi.
+        Ja vēlāk pārdomāsiet, savu izvēli varēsiet mainīt.
+      </p>
+    </div>
+
+    <div class="meal-choice" data-meal-choice>
+      <div class="guest-switcher" aria-label="Izvēlieties viesi">
+        {guests.map((guest, index) => (
+          <button
+            class:list={[
+              "guest-switcher__button",
+              index === 0 && "is-active",
+            ]}
+            type="button"
+            aria-pressed={index === 0 ? "true" : "false"}
+            data-guest-option={guest}
+          >
+            {guest}
+          </button>
+        ))}
+      </div>
+
+      <div class="choice-grid">
+        {mealOptions.map((meal, index) => (
+          <button
+            class="choice-card"
+            type="button"
+            data-meal-option={meal.id}
+            data-meal-label={meal.title}
+            aria-label={`${meal.title} - izvēle ${index + 1}`}
+          >
+            <img
+              src={meal.image}
+              alt={meal.title}
+              loading="lazy"
+              draggable="false"
+            />
+          </button>
+        ))}
+      </div>
+
+      <div class="meal-save-panel">
+        <p data-meal-save-status aria-live="polite">
+          Izvēlieties ēdienu {guests[0]}.
+        </p>
+
+        <button
+          class="meal-save-button"
+          type="button"
+          data-save-meal
+          disabled
+        >
+          Saglabāt izvēli
+        </button>
+      </div>
+    </div>
+
+    <div class="rsvp-footnote">
+      <span class="rsvp-footnote__dot"></span>
+
+      <p>
+        Izvēli varēs mainīt līdz <span>01.06.2027</span>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /*
+   * Desktop/tablet keeps the existing layout.
+   * Phones only become a horizontal swipe belt.
+   */
+  @media (max-width: 767px) {
+    .choice-grid {
+      display: flex;
+      align-items: stretch;
+      gap: 14px;
+
+      width: calc(100% + 36px);
+      margin-inline: -18px;
+
+      padding:
+        10px
+        max(18px, calc((100vw - min(78vw, 330px)) / 2))
+        18px;
+
+      overflow-x: auto;
+      overflow-y: visible;
+
+      /*
+       * Softer snapping so vertical page scrolling still feels natural.
+       */
+      scroll-snap-type: x proximity;
+
+      scroll-padding-inline: max(
+        18px,
+        calc((100vw - min(78vw, 330px)) / 2)
+      );
+
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      /*
+       * Allow both horizontal carousel swipes
+       * and normal vertical page scrolling.
+       */
+      touch-action: pan-x pan-y;
+    }
+
+    .choice-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .choice-card {
+      flex: 0 0 min(78vw, 330px);
+      width: min(78vw, 330px);
+      min-width: 0;
+
+      scroll-snap-align: center;
+      scroll-snap-stop: normal;
+    }
+
+    .choice-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+import FloatingActions from "../../components/invitation/FloatingActions.astro";
+import InvitationClientScript from "../../components/invitation/InvitationClientScript.astro";
+import Navigation from "../../components/invitation/Navigation.astro";
+import CameraSection from "../../components/invitation/CameraSection.astro";
+import InformationSection from "../../components/invitation/InformationSection.astro";
+import LocationSection from "../../components/invitation/LocationSection.astro";
+import RsvpSection from "../../components/invitation/RsvpSection.astro";
+import SaveTheDateHero from "../../components/invitation/SaveTheDateHero.astro";
+import TableSection from "../../components/invitation/TableSection.astro";
+import TimelineSection from "../../components/invitation/TimelineSection.astro";
+import InvitationLayout from "../../layouts/InvitationLayout.astro";
+import { findInviteeBySlug, invitees } from "../../data/invitees";
+import { mealOptions } from "../../data/wedding";
+
+export function getStaticPaths() {
+  return invitees.map((invitee) => ({
+    params: { slug: invitee.slug },
+    props: { invitee },
+  }));
+}
+
+const { invitee } = Astro.props;
+const fallbackInvitee = findInviteeBySlug(Astro.params.slug);
+const activeInvitee = invitee ?? fallbackInvitee;
+
+if (!activeInvitee) {
+  return Astro.redirect("/");
+}
+
+const pageTitle = `${activeInvitee.names} | Vanesas & Roberta kāzu ielūgums`;
+const pageDescription =
+  "Personīgs kāzu ielūgums Vanesas un Roberta īpašajai dienai.";
+const previewImage = "/images/whatsapp-preview.png?v=vanesas-roberta";
+const siteOrigin = Astro.site?.origin;
+const siteUrl = siteOrigin
+  ? new URL(`/ielugums/${activeInvitee.slug}`, siteOrigin).toString()
+  : `/ielugums/${activeInvitee.slug}`;
+const previewImageUrl = siteOrigin
+  ? new URL(previewImage, siteOrigin).toString()
+  : previewImage;
+const rsvpGuests = activeInvitee.rsvpGuests.length
+  ? activeInvitee.rsvpGuests
+  : [activeInvitee.names];
+---
+
+<InvitationLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  siteUrl={siteUrl}
+  previewImageUrl={previewImageUrl}
+>
+  <main class="page">
+    <Navigation />
+    <FloatingActions />
+
+    <div class="wedding-content">
+      <SaveTheDateHero greetingName={activeInvitee.greetingName} />
+      <TimelineSection />
+      <RsvpSection guests={rsvpGuests} mealOptions={mealOptions} />
+      <LocationSection />
+      <TableSection />
+      <InformationSection />
+      <CameraSection />
+    </div>
+  </main>
+
+  <InvitationClientScript />
+</InvitationLayout>

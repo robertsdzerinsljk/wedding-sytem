@@ -1,0 +1,42 @@
+---
+import { weddingVenue } from "../../data/wedding";
+---
+
+<section class="wedding-section wedding-section--tinted" id="vieta">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">Vieta</p>
+        <h2 class="section-title">Kur tiekamies</h2>
+      </div>
+      <p class="section-heading__copy">
+        Ceremonija, svinību vieta un nakšņošana vienuviet. Naktsmītnes saturs var atšķirties katram ielūgumam.
+      </p>
+    </div>
+
+    <div class="location-grid">
+      <article class="location-card">
+        <span class="location-card__label">Ceremonija</span>
+        <h3>{weddingVenue.name}</h3>
+        <p>{weddingVenue.address}</p>
+        <a href={weddingVenue.wazeUrl} target="_blank" rel="noreferrer" aria-label="Atvērt ceremonijas vietu kartē">
+          Atvērt kartē <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+      <article class="location-card">
+        <span class="location-card__label">Svinības</span>
+        <h3>{weddingVenue.name}</h3>
+        <p>{weddingVenue.address}</p>
+        <a href={weddingVenue.wazeUrl} target="_blank" rel="noreferrer" aria-label="Atvērt svinību vietu kartē">
+          Atvērt kartē <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+      <article class="location-card location-card--stay">
+        <span class="location-card__label">Jūsu naktsmītne</span>
+        <h3>Numurs rezervēts</h3>
+        <p>Naktsmītnes vieta un informācija tiks ielādēta personalizēti.</p>
+        <span class="location-card__status">Personalizēts pēc ielūguma</span>
+      </article>
+    </div>
+  </div>
+</section>

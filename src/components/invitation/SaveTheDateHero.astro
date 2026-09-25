@@ -1,0 +1,37 @@
+---
+import Countdown from "./Countdown.astro";
+import { weddingDateLabel, weddingVenue } from "../../data/wedding";
+
+type Props = {
+  greetingName: string;
+};
+
+const { greetingName } = Astro.props;
+---
+
+<section class="wedding-section wedding-section--intro" id="musu-diena">
+  <div class="section-inner invite-hero">
+    <p class="invite-hero__salutation">Mīļie</p>
+
+    <h1 class="invite-hero__title">{greetingName}</h1>
+
+    <p class="invite-hero__copy">
+      Mūsu lielā diena tuvojas, un mēs ļoti priecāsimies to svinēt
+      kopā ar jums. Ceram uz skaistu vakaru, labu noskaņojumu un daudz
+      atmiņu, ko pēc tam būs patīkami atcerēties vēl ilgi.
+    </p>
+
+    <div class="invite-hero__date" aria-label="Kāzu datums">
+      <span>{weddingDateLabel}</span>
+    </div>
+
+    <Countdown />
+
+    <div class="invite-hero__location" aria-label="Kāzu norises vieta">
+      <p>
+        <span>{weddingVenue.name}</span>
+        {weddingVenue.address}
+      </p>
+    </div>
+  </div>
+</section>

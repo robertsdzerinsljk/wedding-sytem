@@ -1,0 +1,56 @@
+---
+import { weddingVenue } from "../../data/wedding";
+---
+
+<a class="camera-fab" href="#kamera" aria-label="Atvērt vienreizlietojamās kameras sadaļu">
+  <span class="camera-fab__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" focusable="false">
+      <path d="M7.2 6.4 8.7 4h6.6l1.5 2.4h2.4A2.8 2.8 0 0 1 22 9.2v7A2.8 2.8 0 0 1 19.2 19H4.8A2.8 2.8 0 0 1 2 16.2v-7a2.8 2.8 0 0 1 2.8-2.8h2.4Zm4.8 3a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm0 1.7a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8Z" fill="currentColor"/>
+    </svg>
+  </span>
+  <span class="camera-fab__label">Kamera</span>
+</a>
+
+<div class="mobile-action-tray" data-mobile-action-tray>
+  <a class="mobile-action-tray__camera" href="#kamera" aria-label="Atvērt disposable kameru">
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+      <path d="M7.2 6.8 8.7 4.6h6.6l1.5 2.2h2.1a2.4 2.4 0 0 1 2.4 2.4v7.6a2.4 2.4 0 0 1-2.4 2.4H5.1a2.4 2.4 0 0 1-2.4-2.4V9.2a2.4 2.4 0 0 1 2.4-2.4h2.1Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.55" />
+      <circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.55" />
+    </svg>
+  </a>
+
+  <span class="mobile-action-tray__label">Disposable kamera</span>
+</div>
+
+<div class="attendance-bubble" id="attendance-bubble" data-attendance-bubble aria-hidden="true">
+  <div class="attendance-bubble__copy">
+    <h2>Vai būsiet ar mums?</h2>
+    <p data-attendance-message>Mums būtu patiess prieks par jūsu klātbūtni!</p>
+  </div>
+
+  <div class="attendance-bubble__actions" aria-label="Atbildēt par dalību">
+    <button class="attendance-choice attendance-choice--yes" type="button" data-attendance-choice="yes">
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="m5 12.3 4.3 4.2L19 6.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" />
+      </svg>
+      Jā, būsim!
+    </button>
+    <button class="attendance-choice attendance-choice--no" type="button" data-attendance-choice="no">
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="m7 7 10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" />
+      </svg>
+      Diemžēl nevarēsim
+    </button>
+  </div>
+</div>
+
+<a
+  class="waze-fab"
+  href={weddingVenue.wazeUrl}
+  target="_blank"
+  rel="noreferrer"
+  aria-label="Atvērt Niedras lokāciju Waze"
+>
+  <img src="/images/waze-button.png" alt="" aria-hidden="true" draggable="false" />
+</a>
+

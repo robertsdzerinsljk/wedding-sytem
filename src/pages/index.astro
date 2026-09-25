@@ -1,17 +1,1078 @@
 ---
-
+const pageTitle = "Vanesa & Roberts | 18.06.2027";
+const pageDescription = "Saglabājiet mūsu īpašo datumu - 18.06.2027.";
+const previewImage = "/images/whatsapp-preview.png?v=vanesas-roberta";
+const siteOrigin = Astro.site?.origin;
+const siteUrl = siteOrigin ? new URL("/", siteOrigin).toString() : "/";
+const previewImageUrl = siteOrigin
+  ? new URL(previewImage, siteOrigin).toString()
+  : previewImage;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="lv">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <meta name="theme-color" content="#efe4cf" />
+
+    <meta name="description" content={pageDescription} />
+    <meta property="og:locale" content="lv_LV" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={previewImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Vanesas un Roberta save the date ielūgums ar zaļu aploksni"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={siteUrl} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={previewImageUrl} />
+
+    <link rel="canonical" href={siteUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" as="image" href="/images/logo-black.png" />
+    <link rel="preload" as="image" href="/images/envelope.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/ring.png" />
+    <link rel="preload" as="image" href="/images/background-pc.png" media="(max-width: 767px)" />
+    <link rel="preload" as="image" href="/images/background-mobile.png" media="(min-width: 768px)" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Imperial+Script&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{pageTitle}</title>
+
+    <noscript>
+      <style>
+        body[data-loading="true"] {
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        body[data-loading="true"] .page {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .app-loader {
+          display: none;
+        }
+      </style>
+    </noscript>
+  </head>
+
+  <body data-loading="true">
+    <div class="app-loader" role="status" aria-live="polite" aria-label="Lapa tiek ielādēta">
+      <img
+        class="loader-logo"
+        src="/images/logo-black.png"
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+      />
+
+      <svg class="loader-ring" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <circle class="loader-ring-track" cx="24" cy="24" r="19" />
+        <circle class="loader-ring-progress" cx="24" cy="24" r="19" />
+      </svg>
+    </div>
+
+    <main class="page">
+      <section class="invitation-intro" data-state="sealed">
+        <img
+          class="brand-mark"
+          src="/images/logo-black.png"
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+        />
+
+        <div class="reveal-copy" aria-live="polite">
+          <p class="reveal-kicker">
+            Saglabājiet mūsu īpašo datumu
+          </p>
+
+          <h1>
+            Vanesa <span>&</span> Roberts
+          </h1>
+
+          <p class="reveal-note">
+            18.06.2027
+          </p>
+
+          <p class="formal-note">
+            Formālais ielūgums sekos
+          </p>
+
+          <p class="join-note">
+            Ceram, ka varēsiet būt kopā ar mums
+          </p>
+
+          <div
+            class="countdown"
+            data-countdown
+            data-target-date="2027-06-18T00:00:00+03:00"
+            aria-label="Laiks līdz 18.06.2027"
+          >
+            <span class="countdown-unit">
+              <span class="countdown-value" data-countdown-value="days">000</span>
+              <span class="countdown-label">dienas</span>
+            </span>
+
+            <span class="countdown-unit">
+              <span class="countdown-value" data-countdown-value="hours">00</span>
+              <span class="countdown-label">stundas</span>
+            </span>
+
+            <span class="countdown-unit">
+              <span class="countdown-value" data-countdown-value="minutes">00</span>
+              <span class="countdown-label">minūtes</span>
+            </span>
+
+            <span class="countdown-unit">
+              <span class="countdown-value" data-countdown-value="seconds">00</span>
+              <span class="countdown-label">sekundes</span>
+            </span>
+          </div>
+
+          <p class="contact-note">
+            Jautājumu gadījumā, lūdzu, sazinieties ar mums.
+          </p>
+        </div>
+
+        <button
+          class="envelope-trigger"
+          type="button"
+          aria-label="Atvērt kāzu ielūgumu"
+        >
+          <span class="envelope-card">
+            <img
+              class="envelope-image"
+              src="/images/envelope.png"
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+            />
+
+            <span class="envelope-inscription" aria-hidden="true">
+              <span class="inscription-label">
+                Jums ir pasts no
+              </span>
+
+              <span class="inscription-names">
+                Vanesas <span>&</span> Roberta
+              </span>
+            </span>
+
+            <img
+              class="envelope-ring"
+              src="/images/ring.png"
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+            />
+
+            <span class="envelope-open-cue" aria-hidden="true">
+              <svg
+                class="cue-hand"
+                viewBox="0 0 28 28"
+                role="img"
+                focusable="false"
+              >
+                <path
+                  d="M10.7 15.2V6.7a2.1 2.1 0 0 1 4.2 0v6.2m0-1.6V9.8a2 2 0 0 1 4 0v4m0-2.2v-.7a1.9 1.9 0 0 1 3.8 0v6.3c0 4.3-2.9 7.3-7.1 7.3h-2.2c-2.7 0-4.8-1.3-6.3-3.4l-2.3-3.2a2.1 2.1 0 0 1 .5-3 2.2 2.2 0 0 1 3 .5l2.4 2.9Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+                <path
+                  d="M8.2 3.8 6.6 2.2M19.7 4l1.8-1.7M14 2.7V.9"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="1.6"
+                />
+              </svg>
+
+              <span>Atvērt ielūgumu</span>
+            </span>
+          </span>
+        </button>
+      </section>
+    </main>
+
+    <script>
+      const invitation = document.querySelector(".invitation-intro");
+      const loader = document.querySelector(".app-loader");
+      const envelope = document.querySelector(".envelope-card");
+      const ring = document.querySelector(".envelope-ring");
+      const trigger = document.querySelector(".envelope-trigger");
+      const countdown = document.querySelector("[data-countdown]");
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+
+      let hasOpened = false;
+      let ringDriftId = 0;
+      let isReady = false;
+
+      const preloadTargets = [
+        "/images/logo-black.png",
+        "/images/envelope.png",
+        "/images/ring.png",
+        "/images/background-pc.png",
+        "/images/background-mobile.png",
+      ];
+
+      const setLoaderProgress = (value) => {
+        document.documentElement.style.setProperty(
+          "--loader-progress",
+          String(Math.max(0, Math.min(1, value))),
+        );
+      };
+
+      const loadImage = (src) =>
+        new Promise((resolve) => {
+          const image = new Image();
+          image.onload = resolve;
+          image.onerror = resolve;
+          image.src = src;
+        });
+
+      const wait = (duration) =>
+        new Promise((resolve) => window.setTimeout(resolve, duration));
+
+      const finishLoading = async () => {
+        const startedAt = performance.now();
+        const loadJobs = preloadTargets.map((src, index) =>
+          loadImage(src).then(() => {
+            setLoaderProgress((index + 1) / (preloadTargets.length + 1));
+          }),
+        );
+
+        const fontsReady =
+          "fonts" in document
+            ? Promise.all([
+                document.fonts.load('400 4rem "Imperial Script"'),
+                document.fonts.load('500 1rem "Cormorant Garamond"'),
+                document.fonts.ready,
+              ]).then(() => {
+                setLoaderProgress(1);
+              }).catch(() => undefined)
+            : Promise.resolve();
+
+        await Promise.race([
+          Promise.all([...loadJobs, fontsReady]),
+          wait(6500),
+        ]);
+
+        setLoaderProgress(1);
+        await wait(Math.max(0, 720 - (performance.now() - startedAt)));
+
+        isReady = true;
+        document.body.dataset.loading = "false";
+
+        window.setTimeout(() => {
+          loader?.setAttribute("hidden", "");
+        }, 780);
+      };
+
+      const updateCountdown = () => {
+        if (!countdown) {
+          return;
+        }
+
+        const targetDate = new Date(countdown.dataset.targetDate || "");
+        const remaining = Math.max(0, targetDate.getTime() - Date.now());
+        const totalSeconds = Math.floor(remaining / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const values = { days, hours, minutes, seconds };
+
+        Object.entries(values).forEach(([unit, value]) => {
+          const target = countdown.querySelector(
+            `[data-countdown-value="${unit}"]`,
+          );
+
+          if (!target) {
+            return;
+          }
+
+          target.textContent =
+            unit === "days"
+              ? String(value)
+              : String(value).padStart(2, "0");
+        });
+      };
+
+      const driftRing = (now) => {
+        if (!ring || reduceMotion.matches || hasOpened) {
+          return;
+        }
+
+        const t = now / 1000;
+        const x = Math.sin(t * 0.58 + 0.7) * 2.6 + Math.sin(t * 0.17 + 2.3) * 1.4;
+        const y = Math.cos(t * 0.49 + 1.1) * 3.1 + Math.sin(t * 0.23) * 1.2;
+        const r = Math.sin(t * 0.41 + 0.4) * 0.28 + Math.cos(t * 0.19) * 0.13;
+
+        ring.style.setProperty("--ring-x", `${x.toFixed(2)}px`);
+        ring.style.setProperty("--ring-y", `${y.toFixed(2)}px`);
+        ring.style.setProperty("--ring-r", `${r.toFixed(3)}deg`);
+        ringDriftId = window.requestAnimationFrame(driftRing);
+      };
+
+      updateCountdown();
+      window.setInterval(updateCountdown, 1000);
+
+      const openInvitation = () => {
+        if (!invitation || !envelope || hasOpened || !isReady) {
+          return;
+        }
+
+        hasOpened = true;
+        window.cancelAnimationFrame(ringDriftId);
+        invitation.setAttribute("data-state", "opening");
+
+        if (reduceMotion.matches) {
+          envelope.style.opacity = "0";
+          envelope.style.transform = "translate3d(0, 12px, 0) scale(0.985)";
+          window.setTimeout(() => {
+            invitation.setAttribute("data-state", "opened");
+          }, 220);
+          return;
+        }
+
+        const viewport = window.innerHeight;
+        const envelopeHeight = envelope.getBoundingClientRect().height;
+        const drift = window.innerWidth < 720 ? -22 : 38;
+        const gravity = 3400;
+        const drag = 0.992;
+        const start = performance.now();
+        const finishOpening = () => {
+          invitation.setAttribute("data-state", "opened");
+        };
+
+        let last = start;
+        let x = 0;
+        let y = 0;
+        let vx = drift;
+        let vy = -150;
+        let rotation = 0;
+        let angularVelocity = window.innerWidth < 720 ? -24 : 18;
+
+        window.setTimeout(finishOpening, 1450);
+
+        const fall = (now) => {
+          const elapsed = now - start;
+          const dt = Math.min((now - last) / 1000, 0.032);
+          last = now;
+
+          vy += gravity * dt;
+          vx *= drag;
+          angularVelocity += 14 * dt;
+
+          x += vx * dt;
+          y += vy * dt;
+          rotation += angularVelocity * dt;
+
+          const scale = Math.max(0.86, 1 - elapsed / 6200);
+          const blur = Math.min(2.4, elapsed / 520);
+
+          envelope.style.transform =
+            `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg) scale(${scale})`;
+          envelope.style.filter =
+            `drop-shadow(0 34px 42px rgba(38, 32, 20, 0.2)) blur(${blur}px)`;
+
+          if (y > envelopeHeight * 0.32) {
+            invitation.setAttribute("data-state", "revealing");
+          }
+
+          if (y < viewport + envelopeHeight * 0.16) {
+            window.requestAnimationFrame(fall);
+            return;
+          }
+
+          finishOpening();
+        };
+
+        window.requestAnimationFrame(fall);
+      };
+
+      if (trigger) {
+        trigger.addEventListener("click", openInvitation);
+      }
+
+      finishLoading().then(() => {
+        if (ring && !reduceMotion.matches) {
+          ringDriftId = window.requestAnimationFrame(driftRing);
+        }
+      });
+    </script>
+  </body>
 </html>
+
+<style is:global>
+  :root {
+    --paper: #efe4cf;
+    --paper-warm: #f6eddc;
+    --olive: #68704b;
+    --olive-dark: #343a24;
+    --gold: #d8b275;
+    --ink: #342e24;
+    --cream: #fbf5e9;
+    --page-padding: 24px;
+    --loader-progress: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    width: 100%;
+    min-height: 100%;
+    background: var(--paper);
+  }
+
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100svh;
+    overflow-x: hidden;
+
+    color: var(--ink);
+    background-color: var(--paper);
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  body[data-loading="true"] {
+    overflow: hidden;
+  }
+
+  body::selection {
+    color: var(--cream);
+    background: var(--olive-dark);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    color: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .page {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 780ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0ms linear 0ms;
+  }
+
+  body[data-loading="true"] .page {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0ms linear,
+      visibility 0ms linear;
+  }
+
+  .app-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    background:
+      radial-gradient(
+        circle at 50% 42%,
+        rgba(255, 252, 243, 0.94) 0%,
+        rgba(246, 237, 220, 0.96) 42%,
+        rgba(229, 211, 178, 0.98) 100%
+      );
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 680ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0ms linear 680ms;
+  }
+
+  .app-loader[hidden] {
+    display: none;
+  }
+
+  body[data-loading="false"] .app-loader {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loader-logo {
+    width: clamp(108px, 22vw, 174px);
+    height: auto;
+    user-select: none;
+    transform: translateY(-14px);
+    filter:
+      drop-shadow(0 12px 18px rgba(76, 62, 36, 0.1))
+      drop-shadow(0 1px 0 rgba(255, 255, 255, 0.58));
+  }
+
+  .loader-ring {
+    position: absolute;
+    left: 50%;
+    top: calc(50% + clamp(74px, 13vw, 112px));
+    width: 48px;
+    height: 48px;
+    color: var(--olive-dark);
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+
+  .loader-ring-track,
+  .loader-ring-progress {
+    fill: none;
+    stroke-width: 2.4;
+  }
+
+  .loader-ring-track {
+    stroke: rgba(70, 62, 41, 0.14);
+  }
+
+  .loader-ring-progress {
+    stroke: color-mix(in srgb, var(--olive-dark) 78%, var(--gold));
+    stroke-linecap: round;
+    stroke-dasharray: 119.38;
+    stroke-dashoffset: calc(119.38 * (1 - var(--loader-progress)));
+    transition: stroke-dashoffset 340ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .invitation-intro {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 100svh;
+    padding:
+      max(26px, env(safe-area-inset-top))
+      var(--page-padding)
+      max(26px, env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(246, 237, 220, 0.82) 0%,
+        rgba(246, 237, 220, 0.56) 50%,
+        rgba(239, 228, 207, 0.78) 100%
+      ),
+      url("/images/background-pc.png") center center / cover no-repeat;
+  }
+
+  .invitation-intro::before,
+  .invitation-intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition:
+      opacity 850ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .invitation-intro::before {
+    opacity: 0.74;
+    background:
+      radial-gradient(
+        circle at 50% 42%,
+        rgba(255, 250, 240, 0.4) 0%,
+        rgba(255, 250, 240, 0.08) 42%,
+        rgba(82, 75, 45, 0.24) 100%
+      );
+  }
+
+  .invitation-intro::after {
+    opacity: 0.16;
+    background:
+      linear-gradient(
+        115deg,
+        transparent 0 30%,
+        rgba(255, 255, 255, 0.55) 45%,
+        transparent 60%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(55, 48, 32, 0.1),
+        transparent 34%,
+        rgba(55, 48, 32, 0.12)
+      );
+    mix-blend-mode: multiply;
+  }
+
+  .brand-mark {
+    position: absolute;
+    left: 50%;
+    top: max(18px, calc(env(safe-area-inset-top) + 14px));
+    z-index: 2;
+    width: clamp(78px, 9vw, 132px);
+    height: auto;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    transform: translateX(-50%);
+    transition:
+      opacity 760ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 860ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 260ms;
+  }
+
+  .reveal-copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    width: min(100%, 760px);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    filter: blur(8px);
+    transition:
+      opacity 820ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 920ms cubic-bezier(0.16, 1, 0.3, 1),
+      filter 920ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 280ms;
+    pointer-events: none;
+  }
+
+  .reveal-kicker,
+  .reveal-note,
+  .formal-note,
+  .inscription-label {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+  }
+
+  .reveal-kicker {
+    color: color-mix(in srgb, var(--olive-dark) 74%, var(--gold));
+    font-size: clamp(0.72rem, 1.7vw, 0.95rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h1 {
+    margin: 18px 0 8px;
+    color: var(--olive-dark);
+    font-family: "Imperial Script", "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(4.1rem, 16vw, 6rem);
+    font-weight: 400;
+    line-height: 0.82;
+    letter-spacing: 0;
+    text-wrap: balance;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.58),
+      0 18px 44px rgba(65, 58, 36, 0.12);
+  }
+
+  h1 span {
+    display: inline-block;
+    margin-inline: 0.05em;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 0.43em;
+    font-style: italic;
+    font-weight: 500;
+    transform: translateY(-0.08em);
+  }
+
+  .reveal-note {
+    max-width: 30rem;
+    color: color-mix(in srgb, var(--ink) 72%, var(--olive));
+    font-size: clamp(1.12rem, 2.7vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.22em;
+  }
+
+  .formal-note {
+    margin-top: 9px;
+    color: color-mix(in srgb, var(--ink) 64%, var(--olive));
+    font-size: clamp(0.68rem, 1.35vw, 0.82rem);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+  }
+
+  .join-note {
+    max-width: 34rem;
+    margin: clamp(26px, 5vh, 44px) 0 0;
+    color: color-mix(in srgb, var(--olive-dark) 82%, var(--gold));
+    font-family: "Imperial Script", "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2.1rem, 5vw, 3.45rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(3.5rem, 1fr));
+    gap: clamp(10px, 2vw, 18px);
+    width: min(100%, 34rem);
+    margin-top: clamp(16px, 3.4vh, 28px);
+    color: var(--olive-dark);
+  }
+
+  .countdown-unit {
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    padding-top: 12px;
+    border-top: 1px solid color-mix(in srgb, var(--olive) 34%, transparent);
+  }
+
+  .countdown-value {
+    font-size: clamp(1.65rem, 4.5vw, 2.9rem);
+    font-variant-numeric: tabular-nums lining-nums;
+    font-weight: 500;
+    line-height: 0.92;
+  }
+
+  .countdown-label {
+    color: color-mix(in srgb, var(--ink) 64%, var(--olive));
+    font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .contact-note {
+    max-width: 28rem;
+    margin: clamp(20px, 3.6vh, 32px) 0 0;
+    color: color-mix(in srgb, var(--ink) 62%, var(--olive));
+    font-size: clamp(1rem, 2.1vw, 1.25rem);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .envelope-trigger {
+    position: absolute;
+    z-index: 3;
+    inset: 50% auto auto 50%;
+    display: block;
+    width: min(94vw, 900px);
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .envelope-trigger:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--gold) 72%, white);
+    outline-offset: 12px;
+  }
+
+  .envelope-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    transform-origin: 50% 54%;
+    filter: drop-shadow(0 32px 34px rgba(48, 42, 27, 0.28));
+  }
+
+  .envelope-image {
+    width: 100%;
+    height: auto;
+    user-select: none;
+  }
+
+  .envelope-inscription {
+    position: absolute;
+    left: 50%;
+    top: 24%;
+    display: grid;
+    justify-items: center;
+    width: 62%;
+    color: rgba(251, 245, 233, 0.86);
+    text-align: center;
+    text-shadow:
+      0 1px 1px rgba(41, 45, 28, 0.34),
+      0 7px 14px rgba(41, 45, 28, 0.14);
+    transform: translateX(-50%);
+  }
+
+  .inscription-label {
+    font-size: clamp(0.44rem, 1.05vw, 0.73rem);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .inscription-names {
+    margin-top: 8px;
+    font-family: "Imperial Script", "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2rem, 5.6vw, 4.8rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .inscription-names span {
+    display: inline-block;
+    margin-inline: 0.12em;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 0.38em;
+    font-style: italic;
+    transform: translateY(-0.12em);
+  }
+
+  .envelope-ring {
+    position: absolute;
+    left: 50%;
+    top: 66.2%;
+    z-index: 2;
+    width: clamp(92px, 18.6%, 142px);
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    filter:
+      drop-shadow(0 5px 5px rgba(30, 26, 16, 0.28))
+      drop-shadow(0 1px 0 rgba(255, 250, 222, 0.44));
+    transform:
+      translate(-50%, -50%)
+      translate3d(var(--ring-x, 0), var(--ring-y, 0), 0)
+      rotate(var(--ring-r, 0deg));
+    transform-origin: center;
+  }
+
+  .envelope-open-cue {
+    position: absolute;
+    left: 50%;
+    top: 83.8%;
+    z-index: 3;
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 8px;
+    max-width: min(82%, 270px);
+    padding: 8px 11px 8px 9px;
+    border-radius: 999px;
+    background: rgba(38, 42, 26, 0.52);
+    color: rgba(251, 245, 233, 0.9);
+    box-shadow:
+      0 9px 18px rgba(27, 24, 16, 0.17),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(0.58rem, 1.2vw, 0.78rem);
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .cue-hand {
+    width: clamp(18px, 2.3vw, 24px);
+    height: clamp(18px, 2.3vw, 24px);
+    color: color-mix(in srgb, var(--gold) 82%, white);
+    filter: drop-shadow(0 2px 2px rgba(24, 22, 14, 0.24));
+  }
+
+  .invitation-intro[data-state="opening"] .envelope-trigger,
+  .invitation-intro[data-state="revealing"] .envelope-trigger,
+  .invitation-intro[data-state="opened"] .envelope-trigger {
+    pointer-events: none;
+  }
+
+  .invitation-intro[data-state="opening"] .envelope-open-cue,
+  .invitation-intro[data-state="revealing"] .envelope-open-cue,
+  .invitation-intro[data-state="opened"] .envelope-open-cue {
+    opacity: 0;
+  }
+
+  .invitation-intro[data-state="revealing"]::before,
+  .invitation-intro[data-state="opened"]::before {
+    opacity: 0.18;
+    transform: scale(1.04);
+  }
+
+  .invitation-intro[data-state="revealing"]::after,
+  .invitation-intro[data-state="opened"]::after {
+    opacity: 0.06;
+  }
+
+  .invitation-intro[data-state="opened"] .reveal-copy {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  .invitation-intro[data-state="opened"] .brand-mark {
+    opacity: 0.82;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .invitation-intro[data-state="opened"] .envelope-trigger {
+    visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --page-padding: 48px;
+    }
+
+    .invitation-intro {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(246, 237, 220, 0.78) 0%,
+          rgba(246, 237, 220, 0.5) 50%,
+          rgba(239, 228, 207, 0.74) 100%
+        ),
+        url("/images/background-mobile.png");
+      background-position: center;
+    }
+
+    .envelope-trigger {
+      width: min(83vw, 1010px);
+    }
+
+  }
+
+  @media (max-width: 560px) {
+    .reveal-copy {
+      align-self: center;
+      padding: 9svh 0 3svh;
+    }
+
+    h1 {
+      margin-top: 14px;
+      font-size: clamp(3.15rem, 18vw, 4.45rem);
+    }
+
+    .reveal-note {
+      max-width: 18rem;
+    }
+
+    .formal-note {
+      margin-top: 7px;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+    }
+
+    .join-note {
+      max-width: 18rem;
+      margin-top: 28px;
+      font-size: clamp(1.85rem, 10vw, 2.55rem);
+    }
+
+    .countdown {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+      width: min(100%, 20.5rem);
+      margin-top: 18px;
+    }
+
+    .countdown-unit {
+      gap: 3px;
+      padding-top: 9px;
+    }
+
+    .countdown-value {
+      font-size: clamp(1.45rem, 8vw, 1.82rem);
+    }
+
+    .countdown-label {
+      font-size: clamp(0.42rem, 2.1vw, 0.5rem);
+      letter-spacing: 0.08em;
+    }
+
+    .contact-note {
+      max-width: 17rem;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+
+    .envelope-trigger {
+      width: min(122vw, 560px);
+    }
+
+    .envelope-inscription {
+      top: 23.5%;
+      width: 70%;
+    }
+
+    .inscription-names {
+      margin-top: 5px;
+    }
+
+    .envelope-ring {
+      width: clamp(76px, 22%, 104px);
+      top: 66.4%;
+    }
+
+    .envelope-open-cue {
+      top: 84.7%;
+      gap: 7px;
+      max-width: 74%;
+      padding: 8px 10px 8px 8px;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .invitation-intro::before,
+    .invitation-intro::after,
+    .reveal-copy,
+    .envelope-open-cue {
+      transition-duration: 220ms;
+    }
+
+  }
+</style>

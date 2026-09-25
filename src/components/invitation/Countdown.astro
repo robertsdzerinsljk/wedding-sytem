@@ -1,0 +1,24 @@
+---
+import { weddingDateIso } from "../../data/wedding";
+---
+
+<div
+  class="countdown"
+  data-countdown
+  data-target-date={weddingDateIso}
+  aria-label="Laiks līdz 18.06.2027"
+>
+  {["days", "hours", "minutes", "seconds"].map((unit) => (
+    <span class="countdown-unit">
+      <span class="countdown-value" data-countdown-value={unit}>
+        {unit === "days" ? "000" : "00"}
+      </span>
+      <span class="countdown-label">
+        {unit === "days" && "dienas"}
+        {unit === "hours" && "stundas"}
+        {unit === "minutes" && "minūtes"}
+        {unit === "seconds" && "sekundes"}
+      </span>
+    </span>
+  ))}
+</div>

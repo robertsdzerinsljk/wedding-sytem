@@ -1,0 +1,34 @@
+---
+import { tableSpots } from "../../data/wedding";
+---
+
+<section class="wedding-section" id="galds">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">Tavs galds</p>
+        <h2 class="section-title">Mēs jums jau atradām vietu</h2>
+      </div>
+      <p class="section-heading__copy">
+        Vēlāk no slug var izgaismot tieši to galdu, pie kura sēž konkrētais viesis.
+      </p>
+    </div>
+
+    <div class="table-map" aria-label="Galdu plāna piemērs">
+      <div class="table-map__stage">Deju grīda</div>
+      {tableSpots.map((spot) => (
+        <button
+          class:list={["table-dot", spot.active && "table-dot--active"]}
+          type="button"
+          style={`--x: ${spot.x}; --y: ${spot.y};`}
+        >
+          {spot.label}
+        </button>
+      ))}
+      <div class="table-map__you">
+        <span>Jūsu galds</span>
+        <strong>04</strong>
+      </div>
+    </div>
+  </div>
+</section>

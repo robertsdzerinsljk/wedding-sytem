@@ -1,0 +1,262 @@
+<script>
+  const navLinks = Array.from(
+    document.querySelectorAll(".glass-nav__link, .glass-nav__mobile-link, .mobile-menu-link"),
+  );
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const menuLinks = Array.from(document.querySelectorAll("[data-menu-link]"));
+  const attendanceBubble = document.querySelector("[data-attendance-bubble]");
+  const attendanceMessage = document.querySelector("[data-attendance-message]");
+  const attendanceChoices = Array.from(document.querySelectorAll("[data-attendance-choice]"));
+
+  const observedSections = Array.from(
+    document.querySelectorAll(
+      "#musu-diena, #programma, #rsvp, #vieta, #galds, #informacija",
+    ),
+  );
+  const heroSection = document.querySelector("#musu-diena");
+
+  const setActiveSection = (id) => {
+    navLinks.forEach((link) => {
+      link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+    });
+  };
+
+  const setMenuOpen = (isOpen) => {
+    document.body.dataset.menuOpen = String(isOpen);
+    mobileMenu?.setAttribute("aria-hidden", String(!isOpen));
+    menuToggle?.setAttribute("aria-expanded", String(isOpen));
+    menuToggle?.setAttribute("aria-label", isOpen ? "Aizvērt izvēlni" : "Atvērt izvēlni");
+  };
+
+  const setAttendanceOpen = (isOpen) => {
+    document.body.dataset.attendanceOpen = String(isOpen);
+    attendanceBubble?.setAttribute("aria-hidden", String(!isOpen));
+  };
+
+  const renderAttendance = (value) => {
+    attendanceChoices.forEach((button) => {
+      const isSelected = button.dataset.attendanceChoice === value;
+      button.classList.toggle("is-selected", isSelected);
+      button.setAttribute("aria-pressed", String(isSelected));
+    });
+
+    if (attendanceMessage) {
+      attendanceMessage.textContent =
+        value === "yes"
+          ? "Paldies, mēs ļoti priecāsimies jūs satikt!"
+          : value === "no"
+            ? "Paldies, ka paziņojāt. Mums jūs pietrūks."
+            : "Mums būtu patiess prieks par jūsu klātbūtni!";
+    }
+  };
+
+  const savedAttendance = window.localStorage.getItem("wedding-attendance");
+  if (savedAttendance === "yes" || savedAttendance === "no") {
+    renderAttendance(savedAttendance);
+    setAttendanceOpen(false);
+  } else {
+    renderAttendance("");
+    setAttendanceOpen(true);
+  }
+
+  menuToggle?.addEventListener("click", () => {
+    const nextState = document.body.dataset.menuOpen !== "true";
+    setMenuOpen(nextState);
+  });
+
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      setMenuOpen(false);
+    });
+  });
+
+  attendanceChoices.forEach((button) => {
+    button.addEventListener("click", () => {
+      const value = button.dataset.attendanceChoice ?? "";
+      if (value === "yes" || value === "no") {
+        window.localStorage.setItem("wedding-attendance", value);
+        renderAttendance(value);
+        setAttendanceOpen(false);
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+
+    if (!(target instanceof Element)) {
+      return;
+    }
+
+    if (
+      document.body.dataset.menuOpen === "true" &&
+      !target.closest("[data-mobile-menu]") &&
+      !target.closest("[data-menu-toggle]")
+    ) {
+      setMenuOpen(false);
+    }
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setMenuOpen(false);
+    }
+  });
+
+  if ("IntersectionObserver" in window && observedSections.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (activeEntry?.target?.id) {
+          setActiveSection(activeEntry.target.id);
+        }
+      },
+      {
+        rootMargin: "-30% 0px -56% 0px",
+        threshold: [0.12, 0.25, 0.5],
+      },
+    );
+
+    observedSections.forEach((section) => sectionObserver.observe(section));
+  }
+
+  if ("IntersectionObserver" in window && heroSection) {
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        document.body.dataset.heroVisible = String(
+          Boolean(entry?.isIntersecting && entry.intersectionRatio > 0.18),
+        );
+      },
+      {
+        threshold: [0, 0.18, 0.5],
+      },
+    );
+
+    heroObserver.observe(heroSection);
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const id = link.getAttribute("href")?.replace("#", "");
+      if (id) {
+        setActiveSection(id);
+      }
+    });
+  });
+
+  const countdown = document.querySelector("[data-countdown]");
+
+  const updateCountdown = () => {
+    if (!countdown) {
+      return;
+    }
+
+    const targetDate = new Date(countdown.dataset.targetDate || "");
+    const remaining = Math.max(0, targetDate.getTime() - Date.now());
+    const totalSeconds = Math.floor(remaining / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    const values = { days, hours, minutes, seconds };
+
+    Object.entries(values).forEach(([unit, value]) => {
+      const target = countdown.querySelector(`[data-countdown-value="${unit}"]`);
+
+      if (!target) {
+        return;
+      }
+
+      target.textContent =
+        unit === "days" ? String(value) : String(value).padStart(2, "0");
+    });
+  };
+
+  updateCountdown();
+  window.setInterval(updateCountdown, 1000);
+
+  const mealChoice = document.querySelector("[data-meal-choice]");
+
+  if (mealChoice) {
+    const guestButtons = Array.from(
+      mealChoice.querySelectorAll("[data-guest-option]"),
+    );
+    const mealCards = Array.from(
+      mealChoice.querySelectorAll("[data-meal-option]"),
+    );
+    const saveButton = mealChoice.querySelector("[data-save-meal]");
+    const saveStatus = mealChoice.querySelector("[data-meal-save-status]");
+    const selections = new Map(
+      guestButtons.map((button) => [button.dataset.guestOption, ""]),
+    );
+    const savedSelections = new Map(
+      guestButtons.map((button) => [button.dataset.guestOption, ""]),
+    );
+    let activeGuest = guestButtons[0]?.dataset.guestOption ?? "";
+
+    const renderMealChoice = () => {
+      const selectedMeal = selections.get(activeGuest) ?? "";
+      const savedMeal = savedSelections.get(activeGuest) ?? "";
+      const selectedCard = mealCards.find(
+        (card) => card.dataset.mealOption === selectedMeal,
+      );
+      const selectedMealLabel = selectedCard?.dataset.mealLabel ?? "";
+
+      guestButtons.forEach((button) => {
+        const isActive = button.dataset.guestOption === activeGuest;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      mealCards.forEach((card) => {
+        const isSelected = card.dataset.mealOption === selectedMeal;
+        card.classList.toggle("is-selected", isSelected);
+        card.setAttribute("aria-pressed", String(isSelected));
+      });
+
+      if (saveButton) {
+        saveButton.disabled = !selectedMeal;
+      }
+
+      if (saveStatus) {
+        if (!selectedMeal) {
+          saveStatus.textContent = `Izvēlieties ēdienu ${activeGuest}.`;
+        } else if (savedMeal === selectedMeal) {
+          saveStatus.textContent = `${activeGuest}: ${selectedMealLabel} ir saglabāts.`;
+        } else {
+          saveStatus.textContent = `${activeGuest}: ${selectedMealLabel}. Pārbaudiet un saglabājiet izvēli.`;
+        }
+      }
+    };
+
+    guestButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeGuest = button.dataset.guestOption ?? activeGuest;
+        renderMealChoice();
+      });
+    });
+
+    mealCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        selections.set(activeGuest, card.dataset.mealOption ?? "");
+        renderMealChoice();
+      });
+    });
+
+    saveButton?.addEventListener("click", () => {
+      const selectedMeal = selections.get(activeGuest) ?? "";
+      if (!selectedMeal) {
+        return;
+      }
+
+      savedSelections.set(activeGuest, selectedMeal);
+      renderMealChoice();
+    });
+
+    renderMealChoice();
+  }
+</script>

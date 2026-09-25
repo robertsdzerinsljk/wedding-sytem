@@ -1,0 +1,31 @@
+---
+import { informationItems } from "../../data/wedding";
+---
+
+<section class="wedding-section wedding-section--tinted" id="informacija">
+  <div class="section-inner">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">Informācija</p>
+        <h2 class="section-title">Dažas svarīgas lietas</h2>
+      </div>
+      <p class="section-heading__copy">
+        Šeit dzīvo visi lūgumi, noteikumi un praktiskā informācija, kas neiederas galvenajā stāstā.
+      </p>
+    </div>
+
+    <div class="information-list">
+      {informationItems.map((item) => (
+        <details class="information-item" open={item.open}>
+          <summary>
+            <span>{item.title}</span>
+            <span class="information-item__plus" aria-hidden="true"></span>
+          </summary>
+          <div class="information-item__body">
+            <p>{item.body}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

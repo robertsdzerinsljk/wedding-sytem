@@ -1,0 +1,47 @@
+---
+import { timelineItems } from "../../data/wedding";
+import { heartIcon, timelineIcons } from "./icons";
+---
+
+<section class="wedding-section wedding-section--tinted" id="programma">
+  <div class="section-inner">
+    <div class="timeline-heading">
+      <span class="timeline-heading__heart" aria-hidden="true" set:html={heartIcon} />
+      <h2>Mūsu kāzu diena</h2>
+      <p>programma</p>
+    </div>
+
+    <div class="timeline" aria-label="Kāzu dienas programma">
+      {timelineItems.map((item) => (
+        <article class={`timeline-item timeline-item--${item.side}`}>
+          {item.side === "left" ? (
+            <>
+              <div class="timeline-item__content">
+                <h3>{item.title}</h3>
+                <p>{item.note}</p>
+              </div>
+              <div class="timeline-item__meta">
+                <span class="timeline-item__icon" aria-hidden="true" set:html={timelineIcons[item.icon]} />
+                <span class="timeline-item__time">{item.time}</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="timeline-item__meta">
+                <span class="timeline-item__time">{item.time}</span>
+                <span class="timeline-item__icon" aria-hidden="true" set:html={timelineIcons[item.icon]} />
+              </div>
+              <div class="timeline-item__content">
+                <h3>{item.title}</h3>
+                <p>{item.note}</p>
+              </div>
+            </>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <p class="timeline-signoff">līdz rīta gaismai</p>
+    <span class="timeline-heart-bottom" aria-hidden="true" set:html={heartIcon} />
+  </div>
+</section>

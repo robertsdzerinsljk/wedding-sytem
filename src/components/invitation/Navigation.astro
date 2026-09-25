@@ -1,0 +1,109 @@
+---
+const navItems = [
+  {
+    href: "#musu-diena",
+    label: "Mūsu diena",
+    icon: '<svg viewBox="0 0 24 24" focusable="false"><path d="M4.5 11.3 12 5l7.5 6.3v8.2a.9.9 0 0 1-.9.9h-4.1v-5.6h-5v5.6H5.4a.9.9 0 0 1-.9-.9v-8.2Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.55"/></svg>',
+  },
+  {
+    href: "#programma",
+    label: "Programma",
+    icon: '<svg viewBox="0 0 24 24" focusable="false"><path d="M12 6.4c1.6-2 4.8-1 4.8 1.9 0 3.1-4.8 5.7-4.8 5.7S7.2 11.4 7.2 8.3c0-2.9 3.2-3.9 4.8-1.9Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M5 19.5c1.4-2.2 3.8-3.4 7-3.4s5.6 1.2 7 3.4M4 14.5c1.1-1.3 2.6-2 4.4-2M20 14.5c-1.1-1.3-2.6-2-4.4-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>',
+  },
+  {
+    href: "#rsvp",
+    label: "RSVP",
+    icon: '<svg viewBox="0 0 24 24" focusable="false"><path d="M12 20.1s-7.1-4.4-8.5-8.6A4.5 4.5 0 0 1 7.8 5.4c1.7 0 3.2.9 4.2 2.3 1-1.4 2.5-2.3 4.2-2.3a4.5 4.5 0 0 1 4.3 6.1c-1.4 4.2-8.5 8.6-8.5 8.6Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.55"/></svg>',
+  },
+  {
+    href: "#vieta",
+    label: "Vieta",
+    icon: '<svg viewBox="0 0 24 24" focusable="false"><path d="M12 21s6.2-5.8 6.2-11.1A6.2 6.2 0 0 0 5.8 9.9C5.8 15.2 12 21 12 21Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.55"/><circle cx="12" cy="9.9" r="2.1" fill="none" stroke="currentColor" stroke-width="1.55"/></svg>',
+  },
+  {
+    href: "#galds",
+    label: "Tavs galds",
+    icon: '<svg viewBox="0 0 24 24" focusable="false"><path d="M7.1 10.1a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM16.9 10.1a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 8.2a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4ZM4.2 18.5c.4-2.4 2.1-4.1 4.3-4.1M19.8 18.5c-.4-2.4-2.1-4.1-4.3-4.1M8 19.2c.5-3.1 2-4.8 4-4.8s3.5 1.7 4 4.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.55"/></svg>',
+  },
+  {
+    href: "#informacija",
+    label: "Informācija",
+    icon: '<svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="8.1" fill="none" stroke="currentColor" stroke-width="1.55"/><path d="M12 10.8v5.1M12 7.9h.01" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"/></svg>',
+  },
+];
+
+const leftItems = navItems.slice(0, 3);
+const rightItems = navItems.slice(3);
+---
+
+<header class="site-header" aria-label="Kāzu ielūguma navigācija">
+  <nav class="glass-nav">
+    <div class="glass-nav__group glass-nav__group--left">
+      {leftItems.map((item, index) => (
+        <a class:list={["glass-nav__link", index === 0 && "is-active"]} href={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    <a class="glass-nav__logo" href="#musu-diena" aria-label="Uz ielūguma sākumu">
+      <span class="glass-nav__logo-card">
+        <img src="/images/logo-black.png" alt="Vanesa un Roberts" draggable="false" />
+      </span>
+    </a>
+
+    <button
+      class="glass-nav__menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Atvērt izvēlni"
+      data-menu-toggle
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="glass-nav__group glass-nav__group--right">
+      {rightItems.map((item) => (
+        <a class="glass-nav__link" href={item.href}>{item.label}</a>
+      ))}
+    </div>
+
+    <div class="glass-nav__mobile-track" aria-label="Sadaļas">
+      {navItems.map((item, index) => (
+        <a class:list={["glass-nav__mobile-link", index === 0 && "is-active"]} href={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <div class="mobile-menu-window" id="mobile-menu" data-mobile-menu aria-hidden="true">
+    <img
+      class="mobile-menu-window__bracket mobile-menu-window__bracket--top"
+      src="/images/menu-curly-bracket.png"
+      alt=""
+      aria-hidden="true"
+      draggable="false"
+    />
+
+    <div class="mobile-menu-window__links" aria-label="Mobilā izvēlne">
+      {navItems.map((item, index) => (
+        <a class:list={["mobile-menu-link", index === 0 && "is-active"]} href={item.href} data-menu-link>
+          <span class="mobile-menu-link__icon" aria-hidden="true" set:html={item.icon} />
+          <span>{item.label}</span>
+        </a>
+      ))}
+    </div>
+
+    <img
+      class="mobile-menu-window__bracket mobile-menu-window__bracket--bottom"
+      src="/images/menu-curly-bracket.png"
+      alt=""
+      aria-hidden="true"
+      draggable="false"
+    />
+  </div>
+</header>
