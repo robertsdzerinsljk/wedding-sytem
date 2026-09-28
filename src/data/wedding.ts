@@ -42,14 +42,14 @@ export const timelineItems: TimelineItem[] = [
   {
     title: "Ceremonija",
     note: "mūsu “jā”",
-    time: "14:00",
+    time: "16:00",
     side: "left",
     icon: "rings",
   },
   {
     title: "Dzirkstošais",
     note: "apsveikumi un foto",
-    time: "16:00",
+    time: "17:00",
     side: "right",
     icon: "toast",
   },

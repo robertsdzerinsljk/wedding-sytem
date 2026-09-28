@@ -53,3 +53,140 @@ import { weddingVenue } from "../../data/wedding";
 >
   <img src="/images/waze-button.png" alt="" aria-hidden="true" draggable="false" />
 </a>
+
+<button
+  class="scroll-top-fab"
+  type="button"
+  aria-label="Ritināt uz lapas sākumu"
+  data-scroll-top
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M6.5 14.5 12 9l5.5 5.5" />
+  </svg>
+</button>
+
+<style>
+  .scroll-top-fab {
+    position: fixed;
+    right: var(--scroll-top-right, max(16px, env(safe-area-inset-right)));
+    top: var(--scroll-top-top, 50%);
+    z-index: 50;
+
+    display: grid;
+    place-items: center;
+    width: var(--scroll-top-size, 62px);
+    height: var(--scroll-top-size, 62px);
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+    background: #333A24;
+    color: #F6F1E7;
+    box-shadow: 0 12px 28px rgba(31, 35, 22, 0.18);
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.92);
+
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 180ms ease;
+  }
+
+  .scroll-top-fab.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+  }
+
+  .scroll-top-fab:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .scroll-top-fab:focus-visible {
+    outline: 2px solid #F6F1E7;
+    outline-offset: 4px;
+  }
+
+  .scroll-top-fab svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .scroll-top-fab path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 560px) {
+    .scroll-top-fab {
+      right: var(--scroll-top-right, max(10px, env(safe-area-inset-right)));
+      width: var(--scroll-top-size, 54px);
+      height: var(--scroll-top-size, 54px);
+    }
+
+    .scroll-top-fab svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-top-fab {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const scrollTopButton = document.querySelector<HTMLElement>("[data-scroll-top]");
+  const wazeButton = document.querySelector<HTMLElement>(".waze-fab");
+  const firstSection = document.querySelector<HTMLElement>("#musu-diena");
+
+  if (scrollTopButton) {
+    const syncWithWaze = () => {
+      if (!wazeButton) return;
+
+      const rect = wazeButton.getBoundingClientRect();
+
+      // Exact horizontal mirror of the Waze button:
+      // Waze's left inset becomes this button's right inset.
+      scrollTopButton.style.setProperty("--scroll-top-right", `${rect.left}px`);
+      scrollTopButton.style.setProperty(
+        "--scroll-top-top",
+        `${rect.top + rect.height / 2}px`,
+      );
+      scrollTopButton.style.setProperty("--scroll-top-size", `${rect.width}px`);
+    };
+
+    const updateVisibility = () => {
+      const show = firstSection
+        ? firstSection.getBoundingClientRect().bottom <= 0
+        : window.scrollY > window.innerHeight;
+
+      scrollTopButton.classList.toggle("is-visible", show);
+    };
+
+    syncWithWaze();
+    updateVisibility();
+
+    window.addEventListener("resize", syncWithWaze);
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+
+    scrollTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      });
+    });
+  }
+</script>
