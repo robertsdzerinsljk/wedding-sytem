@@ -11,8 +11,6 @@ const locationImages = {
   stay: "/images/location-stay.jpg",
 };
 
-const birdviewMapImage = "/images/location-birdview-map.png";
-
 /*
  * Card copy is kept here on purpose so each image has its own identity.
  * Change only these strings if you later want different wording.
@@ -38,6 +36,24 @@ const locationCopy = {
   },
 };
 
+/**
+ * The highlighted house can later come from the personalised invite data:
+ * <LocationSection assignedHouseId={activeInvitee.houseId} />
+ */
+type Props = {
+  assignedHouseId?: string;
+};
+
+const { assignedHouseId = "house-3" } = Astro.props;
+
+const mapHouses = [
+  { id: "house-1", x: 935, y: 164, rotate: -18 },
+  { id: "house-2", x: 1008, y: 220, rotate: 12 },
+  { id: "house-3", x: 924, y: 286, rotate: -10 },
+  { id: "house-4", x: 1050, y: 330, rotate: 15 },
+  { id: "house-5", x: 924, y: 390, rotate: -18 },
+  { id: "house-6", x: 1038, y: 450, rotate: 18 },
+];
 ---
 
 <section class="wedding-section wedding-section--tinted location-section" id="vieta">
@@ -219,7 +235,7 @@ const locationCopy = {
       <div>
         <p class="section-kicker">Niedras</p>
         <h3 id="location-map-title">Teritorijas plāns</h3>
-        <p>Ceremonija, svinību vieta, reception, nakšņošana un pārējie orientieri vienā skatā.</p>
+        <p>Ceremonija, svinību vieta un jūsu naktsmāja vienā skatā.</p>
       </div>
 
       <button class="location-overlay__close location-overlay__close--map" type="button" data-close-location-map aria-label="Aizvērt teritorijas plānu">
@@ -228,20 +244,120 @@ const locationCopy = {
     </header>
 
     <div class="estate-map-scroll" data-estate-map-scroll>
-      <figure class="estate-map-figure">
-        <img
-          class="estate-map"
-          src={birdviewMapImage}
-          alt="Teritorijas karte ar atzīmētu ceremonijas vietu, svinību vietu, reception, WC un iebraukšanu."
-          loading="lazy"
-        />
-      </figure>
+      <svg class="estate-map" viewBox="0 0 1200 680" role="img" aria-labelledby="estate-map-title estate-map-desc">
+        <title id="estate-map-title">Niedras teritorijas ilustratīvs plāns</title>
+        <desc id="estate-map-desc">Stilizēta teritorijas karte ar ceremonijas vietu pie ūdens, svinību zāli, iebraucamo ceļu un naktsmāju grupu. Jūsu naktsmāja ir iekrāsota zelta tonī.</desc>
+
+        <defs>
+          <pattern id="map-grain" width="26" height="26" patternUnits="userSpaceOnUse">
+            <circle cx="5" cy="8" r="1" fill="#697156" opacity=".08" />
+            <circle cx="18" cy="17" r=".8" fill="#697156" opacity=".07" />
+          </pattern>
+          <filter id="map-shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#26301d" flood-opacity=".16" />
+          </filter>
+        </defs>
+
+        <rect width="1200" height="680" rx="34" fill="#ece7da" />
+        <rect width="1200" height="680" rx="34" fill="url(#map-grain)" />
+
+        <!-- landscape masses -->
+        <path d="M0 0h470c-31 61-49 113-41 170 6 47-11 82-57 108-72 40-165 34-243 6C79 266 35 237 0 204V0Z" fill="#d7dcc8" />
+        <path d="M777 0h423v680H885c-13-64-2-117 30-161 34-47 28-99-19-143-43-41-66-91-51-149 17-68 2-140-68-227Z" fill="#d0d7c3" />
+        <path d="M40 526c98-65 187-69 275-23 71 37 132 46 197 18 54-23 111-20 170 10 75 38 129 83 163 149H40V526Z" fill="#dde0cf" opacity=".84" />
+
+        <!-- water / ceremony edge -->
+        <path d="M0 44c71 11 128 41 171 89 35 40 61 79 95 98-42 33-94 51-157 48-43-2-79-11-109-28V44Z" fill="#b8c9bd" />
+        <path d="M0 242c61 24 118 27 171 10 35-11 66-28 94-49" fill="none" stroke="#f7f3e9" stroke-width="12" opacity=".9" />
+
+        <!-- main roads based on the reference layout -->
+        <path d="M1189 22C1106 50 1053 89 1010 142c-44 54-91 92-147 113-62 24-103 56-123 97-17 35-42 63-76 83-57 34-91 82-103 144" fill="none" stroke="#c6bda9" stroke-width="34" stroke-linecap="round" />
+        <path d="M1189 22C1106 50 1053 89 1010 142c-44 54-91 92-147 113-62 24-103 56-123 97-17 35-42 63-76 83-57 34-91 82-103 144" fill="none" stroke="#eee8dc" stroke-width="22" stroke-linecap="round" />
+        <path d="M750 349c-92-30-167-35-236-10-70 25-130 67-184 126-58 64-106 106-170 130" fill="none" stroke="#c6bda9" stroke-width="25" stroke-linecap="round" />
+        <path d="M750 349c-92-30-167-35-236-10-70 25-130 67-184 126-58 64-106 106-170 130" fill="none" stroke="#eee8dc" stroke-width="15" stroke-linecap="round" />
+
+        <!-- tennis court -->
+        <g transform="translate(430 112) rotate(-18 55 34)" opacity=".86">
+          <rect width="110" height="68" rx="7" fill="#9bac91" />
+          <rect x="7" y="7" width="96" height="54" rx="2" fill="none" stroke="#f1eadc" stroke-width="2" />
+          <path d="M55 7v54M7 34h96" stroke="#f1eadc" stroke-width="1.4" />
+        </g>
+
+        <!-- ceremony deck -->
+        <g class="estate-landmark estate-landmark--ceremony" transform="translate(250 208) rotate(-7)">
+          <path d="M-72-30h144v60H-72z" rx="12" fill="#f5f0e6" stroke="#a59a77" stroke-width="3" filter="url(#map-shadow)" />
+          <path d="M-55-12h110M-55 4h110M-55 20h110" stroke="#d5ccb7" stroke-width="3" stroke-linecap="round" />
+          <circle cx="0" cy="0" r="7" fill="#333A24" />
+        </g>
+
+        <!-- celebration hall -->
+        <g class="estate-landmark estate-landmark--hall" transform="translate(640 491) rotate(4)">
+          <rect x="-104" y="-38" width="208" height="76" rx="9" fill="#f8f4eb" stroke="#91886f" stroke-width="3" filter="url(#map-shadow)" />
+          <path d="M-88-26h176L70 0H-70L-88-26Z" fill="#646b58" />
+          <path d="M-70 0h140v25H-70z" fill="#dad3c3" />
+        </g>
+
+        <!-- other roof masses visible in the reference -->
+        <g transform="translate(720 232) rotate(-18)" opacity=".8">
+          <rect x="-42" y="-22" width="84" height="44" rx="5" fill="#8b8a7c" />
+          <path d="M-48-18 0-42l48 24Z" fill="#5b6251" />
+        </g>
+        <g transform="translate(350 572) rotate(24)" opacity=".72">
+          <rect x="-60" y="-26" width="120" height="52" rx="6" fill="#9b998b" />
+          <path d="M-68-20 0-50l68 30Z" fill="#656b5b" />
+        </g>
+
+        <!-- guest houses -->
+        {mapHouses.map((house, index) => (
+          <g
+            class:list={["estate-house", house.id === assignedHouseId && "is-assigned"]}
+            transform={`translate(${house.x} ${house.y}) rotate(${house.rotate})`}
+            data-house-id={house.id}
+          >
+            <rect class="estate-house__base" x="-32" y="-18" width="64" height="36" rx="6" filter="url(#map-shadow)" />
+            <path class="estate-house__roof" d="M-38-12 0-36l38 24-7 4L0-27-31-8Z" />
+            <path class="estate-house__ridge" d="M0-28v40" />
+            <text x="0" y="42" text-anchor="middle">{String(index + 1).padStart(2, "0")}</text>
+          </g>
+        ))}
+
+        <!-- labels -->
+        <g class="estate-label" transform="translate(140 322)">
+          <circle r="19" fill="#333A24" />
+          <text x="0" y="5" text-anchor="middle">01</text>
+          <path d="M28 0h86" stroke="#7c806c" stroke-width="1" />
+          <text class="estate-label__name" x="128" y="5">Ceremonija pie ezera</text>
+        </g>
+
+        <g class="estate-label" transform="translate(559 590)">
+          <circle r="19" fill="#333A24" />
+          <text x="0" y="5" text-anchor="middle">02</text>
+          <path d="M28 0h65" stroke="#7c806c" stroke-width="1" />
+          <text class="estate-label__name" x="106" y="5">Svinību zāle</text>
+        </g>
+
+        {mapHouses.map((house) => house.id === assignedHouseId && (
+          <g class="estate-assigned-label" transform={`translate(${house.x - 17} ${house.y + 70})`}>
+            <path d="M17-43V-12" stroke="#a88d4d" stroke-width="2" stroke-dasharray="4 5" />
+            <rect x="-55" y="-12" width="144" height="36" rx="18" fill="#fffaf0" stroke="#b49a5d" />
+            <text x="17" y="11" text-anchor="middle">Jūsu naktsmāja</text>
+          </g>
+        ))}
+
+        <!-- entrance -->
+        <g transform="translate(1082 78)">
+          <circle r="8" fill="#b4995c" />
+          <text class="estate-map__small-label" x="-20" y="3" text-anchor="end">Iebraukšana</text>
+        </g>
+      </svg>
     </div>
 
     <footer class="location-map-modal__footer">
-      <p class="location-map-modal__hint">
-        Iespēja iepazīties ar teritorijas plānu, pirms ierodaties ceremonijā un svinībās. Visi orientieri ir atzīmēti.
-      </p>
+      <div class="location-map-legend">
+        <span><i class="legend-dot legend-dot--dark"></i>Ceremonija / svinības</span>
+        <span><i class="legend-dot legend-dot--gold"></i>Jūsu naktsmāja</span>
+      </div>
+      <p class="location-map-modal__hint">Plāns ir ilustratīvs un paredzēts ērtai orientācijai teritorijā.</p>
     </footer>
   </div>
 </dialog>
@@ -806,15 +922,8 @@ const locationCopy = {
     margin: 0 clamp(14px, 2.2vw, 28px);
     overflow: auto;
     border-radius: clamp(16px, 1.7vw, 24px);
-    background: #ebe5d8;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-  }
-
-  .estate-map-figure {
-    margin: 0;
-    min-width: 860px;
-    background: #ebe5d8;
   }
 
   .estate-map {
@@ -822,7 +931,6 @@ const locationCopy = {
     width: 100%;
     min-width: 860px;
     height: auto;
-    object-fit: contain;
     background: #ece7da;
   }
 
@@ -901,21 +1009,41 @@ const locationCopy = {
   .location-map-modal__footer {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 24px;
     padding: 16px clamp(24px, 3.5vw, 46px) 22px;
   }
 
-  .location-map-modal__hint {
-    margin: 0;
-    color: color-mix(in srgb, var(--olive-dark) 60%, transparent);
-    font-size: .74rem;
-    line-height: 1.55;
+  .location-map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
   }
 
-  .location-map-modal__hint strong {
-    color: var(--olive-dark);
-    font-weight: 700;
+  .location-map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: color-mix(in srgb, var(--olive-dark) 74%, transparent);
+    font-size: .72rem;
+    font-weight: 600;
+  }
+
+  .legend-dot {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .legend-dot--dark { background: #333A24; }
+  .legend-dot--gold { background: #b69955; }
+
+  .location-map-modal__hint {
+    margin: 0;
+    color: color-mix(in srgb, var(--olive-dark) 52%, transparent);
+    font-size: .68rem;
+    text-align: right;
   }
 
   @media (hover: hover) and (pointer: fine) {
